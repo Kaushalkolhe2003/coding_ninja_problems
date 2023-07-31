@@ -1,0 +1,13 @@
+#include <bits/stdc++.h> 
+vector<int> copyAndReverse(vector<int> arr, int n) {
+	vector<int> COPY_ARR;
+int s=0;
+int e=arr.size()-1;
+while(s<=e){
+	swap(arr[s],arr[e]);
+	s++;
+	e--;
+}
+COPY_ARR.swap(arr);
+return COPY_ARR;
+}	
