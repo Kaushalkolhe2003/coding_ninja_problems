@@ -1,0 +1,12 @@
+#include <bits/stdc++.h> 
+
+string stringReverse(string S) {
+    int st=0;
+    int e=S.size()-1;
+    while(st<=e){
+        swap(S[st],S[e]);
+        st++;e--;
+    }
+    return S;
+  
+}
