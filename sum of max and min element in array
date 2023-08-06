@@ -1,0 +1,7 @@
+#include <bits/stdc++.h> 
+#include<algorithm>
+
+int sumOfMaxMin(int arr[], int n){
+sort(arr,arr+n);
+	int sum=arr[0]+arr[n-1];
+}
