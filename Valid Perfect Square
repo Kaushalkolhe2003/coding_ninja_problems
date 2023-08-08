@@ -1,0 +1,25 @@
+#include <bits/stdc++.h> 
+bool binary_search(long long n){
+	int s=0;
+	int e=n;
+	long long  mid=s+(e-s)/2;
+	while(s<=e){
+	long long  square=mid*mid;
+		if(square==n){
+			return true;
+		}
+		if(square<n){
+			int ans=mid;
+			s=mid+1;
+		}
+		if(square>n){
+			e=mid-1;
+		}
+		mid=s+(e-s)/2;
+
+	}
+	return false;
+}
+bool isPerfectSquare(long long n) {
+	return binary_search(n);
+}
