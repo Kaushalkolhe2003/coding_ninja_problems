@@ -1,0 +1,30 @@
+#include <bits/stdc++.h> 
+int countLessOrEqual(const vector<int> &arr, int target) {
+    int count = 0;
+    for (int num : arr) {
+        if (num <= target) {
+            count++;
+        }
+    }
+    return count;
+}
+int findDuplicate(vector<int> &arr) 
+{  
+	int left = 1; // Smallest possible element
+    int right = arr.size() - 1; // Largest possible element
+    int duplicate = -1;
+    
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        int count = countLessOrEqual(arr, mid);
+        
+        if (count > mid) {
+            duplicate = mid;
+            right = mid - 1;
+        } else {
+            left = mid + 1;
+        }
+    }
+    
+    return duplicate;
+}
