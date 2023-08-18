@@ -1,0 +1,56 @@
+int firstocc(vector<int> &arr, int n, int x){
+    int s = 0, e = n - 1;
+    int ans = -1;
+    
+    while(s <= e){
+        int mid = s + (e - s) / 2;
+        if(arr[mid] == x){
+            ans = mid;
+            e = mid - 1;
+        }
+        else if(arr[mid] > x){
+            e = mid - 1;
+        }
+        else if(arr[mid] < x){
+            s = mid + 1;
+        }
+    }
+    
+    return ans;
+}
+
+int lastocc(vector<int> &arr, int n, int x){
+    int s = 0, e = n - 1;
+    int ans = -1;
+    
+    while(s <= e){
+        int mid = s + (e - s) / 2;
+        if(arr[mid] == x){
+            ans = mid;
+            s = mid + 1;
+        }
+        else if(arr[mid] > x){
+            e = mid - 1;
+        }
+        else if(arr[mid] < x){
+            s = mid + 1;
+        }
+    }
+    
+    return ans;
+}
+
+vector<int> searchRange(vector<int> &arr, int x) {
+    pair<int, int> p; 
+    p.first = firstocc(arr, arr.size(), x);
+    p.second = lastocc(arr, arr.size(), x);
+    
+    if (p.first == -1 && p.second == -1) {
+        
+        return vector<int>{-1, -1};
+    }
+    
+    // Otherwise, return the pair as a vector
+    return vector<int>{p.first, p.second};
+}
+
