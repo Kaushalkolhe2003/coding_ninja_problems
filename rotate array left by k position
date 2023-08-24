@@ -1,35 +1,26 @@
-#include <bits/stdc++.h> 
-#include <iostream>
-using namespace std;
-void rotate_arr(int arr[],int n,int k){
-    int temp[k];
-    for(int i=0;i<k;i++){
-        temp[i]=arr[i];
-    }
-    for(int i=k;i<n;i++){
-        arr[i-k]=arr[i];
-    }
-    for(int i=0;i<k;i++){
-        arr[n-k+i]=temp[i];
-    }
+void Rotatetoleft(vector<int>&arr, int k)
+{
+    int n=arr.size();
+  if (n == 0)
+    return;
+  k = k % n;
+  if (k > n)
+    return;
+  int temp[k];
+  for (int i = 0; i < k; i++)
+  {
+    temp[i] = arr[i];
+  }
+  for (int i = 0; i < n - k; i++)
+  {
+    arr[i] = arr[i + k];
+  }
+  for (int i = n - k; i < n; i++)
+  {
+    arr[i] = temp[i - n + k];
+  }
 }
-void print_arr(int arr[], int n) {
-    for (int i = 0; i < n; i++) {
-        cout << arr[i]<<" ";
-    }
-}
-int main() {
-    int n;
-    cin>>n;
-    int arr[n];
-    for(int i=0;i<n;i++){
-        cin>>arr[i];
-    }
-    int k;
-    cin>>k;
-    k = k % n;
-    rotate_arr(arr,n,k);
-    print_arr(arr,n);
-
-    return 0;
+vector<int> rotateArray(vector<int>arr, int k) {
+    Rotatetoleft(arr,k);
+    return arr;
 }
