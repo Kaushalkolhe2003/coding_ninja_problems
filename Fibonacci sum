@@ -1,0 +1,25 @@
+#include <bits/stdc++.h> 
+const int MOD = 1000000007;
+
+vector<int> calculateFibonacci(int m) {
+    vector<int> fib(m + 1);
+    fib[0] = 0;
+    fib[1] = 1;
+    
+    for (int i = 2; i <= m; i++) {
+        fib[i] = (fib[i - 1] + fib[i - 2]) % MOD;
+    }
+    
+    return fib;
+}
+
+int fiboSum(int n, int m) {
+    vector<int> fib = calculateFibonacci(m);
+    int sum = 0;
+    
+    for (int i = n; i <= m; i++) {
+        sum = (sum + fib[i]) % MOD;
+    }
+    
+    return sum;
+}
