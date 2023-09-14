@@ -1,0 +1,14 @@
+#include <bits/stdc++.h> 
+void Reverse(string &s,int i,int j){
+    if(i>j){
+        return;
+    }
+    swap(s[i],s[j]);
+    i++;j--;
+    Reverse(s,i,j);
+}
+string reverseString(string str)
+{
+	Reverse(str,0,str.length()-1);
+	return str;
+}
