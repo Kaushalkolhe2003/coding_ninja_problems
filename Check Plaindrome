@@ -1,0 +1,15 @@
+bool checkpalin(string & s,int i,int j){
+    if(i>j)
+    return true;
+    
+    if(s[i]!=s[j])
+    return false;
+    else{
+        checkpalin(s,i+1,j-1);
+    }
+    
+}
+bool isPalindrome(string &s)
+{
+	return checkpalin(s,0,s.length()-1);
+}
