@@ -1,0 +1,14 @@
+bool ispalin(string str,int i,int j){
+    if(i>j){
+     return true;
+    }
+    if(str[i]!=str[j]){
+        return false;
+    }
+    else{
+        ispalin(str,i+1,j-1);
+    }
+}
+bool isPalindrome(string& str) {
+    return ispalin(str,0,str.length()-1);
+}
