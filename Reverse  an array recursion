@@ -1,0 +1,17 @@
+void recursive(int i, int n, vector<int>&nums){
+
+   if(i < n/2){
+
+    swap(nums[i], nums[n-i-1]);
+
+    recursive(i+1, n, nums);   
+
+   }
+
+}
+vector<int> reverseArray(int n, vector<int> &nums)
+{   
+   recursive(0,n,nums);
+   return nums;
+
+}
