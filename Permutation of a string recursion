@@ -1,0 +1,22 @@
+#include <algorithm>
+void solve(vector<string>& ans, string str, int index){
+
+    if(index >= str.length()){
+        ans.push_back(str);
+        return;
+    }
+    for(int i = index; i < str.length(); i++){
+        swap(str[i], str[index]);
+        solve(ans, str, index + 1);
+
+        swap(str[i], str[index]);
+    }
+}
+vector<string> generatePermutations(string &str)
+
+{
+    vector<string> ans;
+    solve(ans, str, 0);
+    sort(ans.begin(), ans.end());
+    return ans;
+}
