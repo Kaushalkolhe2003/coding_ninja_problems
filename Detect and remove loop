@@ -1,0 +1,64 @@
+/*************************************************
+    
+    class Node {
+        public :
+
+        int data;
+        Node *next;
+
+        Node(int data) {
+            this -> data = data;
+            this -> next = NULL;
+        }
+    };
+
+*************************************************/
+Node * flyod_cycle(Node *head){
+    if(head==NULL){
+        return NULL;
+    }
+    
+    //Making 2 poointer to iterate over the cycle that is tortise and hare that is slow and fast
+    Node* slow=head;
+    Node*fast=head;
+    while(slow!=NULL && fast!=NULL){
+        fast=fast->next;
+        if(fast!=NULL){
+            fast=fast->next;
+        }
+        slow=slow->next;
+        if(slow==fast){
+         //   cout<<"Cycle is present at data : "<<slow->data<<endl;
+            return slow;
+        }
+    }
+    return NULL;
+}
+Node *get_starting(Node *head){
+    Node *intersection=flyod_cycle(head);
+    if(intersection==NULL){
+        return NULL;
+    }
+    Node*slow=head;
+    while(slow!=intersection){
+        slow=slow->next;
+        intersection=intersection->next;
+    }
+    return slow;
+}
+Node *removeLoop(Node *head)
+{
+    if(head==NULL){
+        return NULL;
+    }
+    Node *startloop=get_starting(head);
+    if(startloop==NULL){
+        return head;
+    }
+    Node*temp=startloop;
+    while(temp->next != startloop){
+        temp=temp->next;
+    }
+    temp->next=NULL;
+    return head;
+}
