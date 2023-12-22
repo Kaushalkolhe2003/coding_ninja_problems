@@ -1,0 +1,55 @@
+#include <unordered_map>
+/*
+ * Definition for linked list.
+ * class Node {
+ *  public:
+ *		int data;
+ *		Node *next;
+ * 		Node *random;
+ *		Node() : data(0), next(nullptr), random(nullptr){};
+ *		Node(int x) : data(x), next(nullptr), random(nullptr) {}
+ *		Node(int x, Node *next, Node *random) : data(x), next(next), random(random) {}
+ * };
+ */
+void Insert_at_tail(Node *&head,Node *&tail,int data){
+	Node *temp=new Node(data);
+	if(head==NULL){
+		head=temp;
+		tail=temp;
+	}
+	else{
+		tail->next=temp;
+		tail=tail->next;
+	}
+}
+Node *cloneLL(Node *head){
+	Node *clonehead=NULL;
+	Node *clonetail=NULL;
+
+	Node *temp=head;
+	//copying a Linked list in clone wala
+	while(temp != NULL){
+		Insert_at_tail(clonehead,clonetail,temp->data);
+		temp=temp->next;
+	}
+
+	//step 2: create a map
+	unordered_map <Node*,Node*> oldtonewNode;
+	Node *originalhead=head;
+	Node *originalclone=clonehead;
+	while(originalhead !=NULL && originalclone !=NULL){
+		oldtonewNode[originalhead]=originalclone;
+
+		originalclone=originalclone->next;
+		originalhead=originalhead->next;
+	}
+	//set head to orignal o=position
+	originalclone=clonehead;
+	originalhead=head;
+	while(originalhead != NULL){
+		originalclone ->random = oldtonewNode[originalhead -> random];
+		originalclone=originalclone->next;
+		originalhead=originalhead->next;
+	}
+	return clonehead;
+}
