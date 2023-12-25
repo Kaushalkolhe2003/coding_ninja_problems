@@ -1,0 +1,29 @@
+ if(head->next==NULL)
+
+    {
+
+        return head;
+
+    }
+
+    Node *temp=head;
+
+    Node *swap=NULL;
+
+    while(temp!=NULL)
+
+    {
+
+        swap=temp->prev;
+
+        temp->prev=temp->next;
+
+        temp->next=swap;
+
+        temp=temp->prev;
+
+    }
+
+    head=swap->prev;
+
+    return head;
