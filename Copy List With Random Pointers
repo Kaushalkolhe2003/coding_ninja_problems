@@ -1,0 +1,66 @@
+#include <bits/stdc++.h>
+#include <unordered_map> 
+/*************************************************************
+
+    Following is the LinkedListNode class structure
+
+    template <typename T>   
+    class LinkedListNode
+    {
+        public:
+        T data;
+        LinkedListNode<T> *next;
+        LinkedListNode<T> *random;
+        LinkedListNode(T data)
+        {
+            this->data = data;
+            this->next = NULL;
+        }
+    };
+
+*************************************************************/
+void insertAtTail(LinkedListNode<int> * &head, LinkedListNode<int> * &tail, int data)
+{
+	LinkedListNode<int> *newNode = new LinkedListNode<int>(data);
+    if(head == NULL)
+    {
+        head = newNode;
+        tail = newNode;
+        return;
+    }
+    else
+    {
+        tail -> next = newNode;
+        tail = newNode;
+    }
+}
+LinkedListNode<int> *cloneRandomList(LinkedListNode<int> *head)
+{
+    // Write your code here.
+    LinkedListNode<int> *cloneHead = NULL;
+    LinkedListNode<int> *cloneTail = NULL;
+    LinkedListNode<int> *temp = head;
+    while(temp)
+    {
+        insertAtTail(cloneHead, cloneTail, temp -> data);
+        temp = temp -> next;
+    }
+    unordered_map<LinkedListNode<int> *, LinkedListNode<int> *> oldToNewNodeMapping;
+    LinkedListNode<int> *originalNode = head;
+    LinkedListNode<int> *cloneNode = cloneHead;
+    while(originalNode && cloneNode)
+    {
+        oldToNewNodeMapping[originalNode] = cloneNode;
+        originalNode = originalNode -> next;
+        cloneNode = cloneNode -> next;
+    }
+    originalNode = head;
+    cloneNode = cloneHead;
+    while(originalNode)
+    {
+        cloneNode -> random = oldToNewNodeMapping[originalNode -> random];
+        originalNode = originalNode -> next;
+        cloneNode = cloneNode -> next;
+    }
+    return cloneHead;
+}
