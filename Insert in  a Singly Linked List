@@ -1,0 +1,66 @@
+/************************************************************
+
+    Following is the LinkedList class structure:
+
+    class Node {
+    public:
+        int data;
+        Node *next;
+
+        Node(int val) {
+            this->data = val;
+            next = NULL;
+        }
+        ~Node() {
+            if (next != NULL) {
+                delete next;
+            }
+        }
+};
+
+************************************************************/
+void insert_at_head(Node * &head,int val){
+    Node * temp=new Node (val);
+    if(head==NULL){
+        head=temp;
+    }
+    else{
+        temp->next=head;
+        head=temp;
+    }
+}
+
+Node * insert(Node * head, int n, int pos, int val) {
+    if (head==NULL){
+        Node *temp= new Node(val);
+        head=temp;
+        return head;
+    }
+    if(pos==0){
+        insert_at_head(head,val);
+        return head;
+    }
+   
+    int cnt=1;
+    Node *temp=head;
+    while(cnt < pos){
+        temp=temp->next;
+        cnt++;
+    }
+    
+   // Insert at last position
+    if(temp->next==NULL){
+        Node * insert_new=new Node (val);
+        temp->next=insert_new;
+
+
+    }else{
+         Node *nodetoinsert =new Node(val);
+    nodetoinsert ->next=temp->next;
+    temp->next =nodetoinsert;
+        
+    }
+   
+
+    return head;
+}
