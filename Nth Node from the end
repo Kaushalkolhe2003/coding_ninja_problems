@@ -1,0 +1,45 @@
+#include <bits/stdc++.h> 
+/****************************************************************
+
+    Following is the class structure of the Node class:
+
+        class Node
+        {
+        public:
+	        int data;
+	        Node *next;
+	        Node(int data)
+	        {
+		        this->data = data;
+		        this->next = NULL;
+	        }
+        };
+
+*****************************************************************/
+
+int getcount(Node *&head){
+	int cnt=0;
+	Node *temp=head;
+	while(temp!=NULL){
+		cnt++;
+		temp=temp->next;
+	}
+	return cnt;
+}
+Node* nthNodeFromEnd(Node* head, int n)
+{
+	if(head==NULL || head->next==NULL){
+		return head;
+	}
+	 int cnt = getcount(head);
+    int jump = cnt - n;
+    Node* temp = head;
+    
+    while (jump > 0 && temp != nullptr) {
+        temp = temp->next;
+        jump--;
+    }
+    
+    return temp; 
+   
+}
