@@ -1,0 +1,47 @@
+#include <bits/stdc++.h> 
+/************************************************************
+
+    Following is the list node structure:
+    
+    template <typename T>
+    class Node {
+        public:
+            T data;
+            Node* next;
+
+            Node(T data) {
+                next = NULL;
+                this->data = data;
+            }
+            ~Node() {
+                if (next != NULL) {
+                    delete next;
+                }
+            }
+    };
+
+************************************************************/
+
+pair < Node < int > * , Node < int > * > divideList(Node < int > * head) {
+    if(head==NULL || head->next==NULL){
+        return{head,NULL};
+    }
+    Node <int> *node1=head;
+    Node <int> *node2=head->next;
+    Node <int> *temp1=head;
+    Node <int> * temp2=head->next;
+
+    while(temp1!=NULL && temp1->next!=NULL){
+        if(temp1->next != NULL){
+            temp1->next=temp1->next->next;
+            temp1=temp1->next;
+        }
+        if(temp2->next !=NULL){
+            temp2->next=temp2->next->next;
+            temp2=temp2->next;
+        }
+    }
+    return {node1,node2};
+
+
+}
