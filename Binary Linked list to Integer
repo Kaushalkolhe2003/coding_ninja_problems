@@ -1,0 +1,50 @@
+/************************************************************
+
+    Following is the linkedList class structure:
+
+    class Node {
+    public:
+        int data;
+        Node *next;
+
+        Node(int val) {
+            this->data = val;
+            next = NULL;
+        }
+        ~Node() {
+            if (next != NULL) {
+                delete next;
+            }
+        }
+};
+
+************************************************************/
+Node *revese(Node *head){
+    if(head==NULL || head->next==NULL){
+        return head;
+    }
+    Node *curr=head;
+    Node *prev=NULL;
+    Node *forward=NULL;
+    while(curr!=NULL){
+        forward=curr->next;
+        curr->next=prev;
+        prev=curr;
+        curr=forward;
+    }
+    return prev;
+}
+int binaryToInteger(int n, Node *head) {
+    head=revese(head);
+
+    int dec_value = 0;
+    int base=1;
+    Node *temp=head;
+    while(temp!=NULL){
+        dec_value += temp->data * base;
+        base = base * 2;
+        temp=temp->next;
+    }
+    return dec_value;
+ 
+}
