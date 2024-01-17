@@ -1,0 +1,17 @@
+void reverse_recursion(queue <int> &q){
+    if(q.empty()){
+        return;
+    }
+    int frontelement=q.front();
+    q.pop();
+
+    reverse_recursion(q);
+
+    q.push(frontelement);
+}
+queue<int> reverseQueue(queue<int> q)
+{
+   reverse_recursion(q);
+   return q;
+
+}
