@@ -1,0 +1,55 @@
+#include <bits/stdc++.h> 
+vector<int> firstNegativeInteger(vector<int> &arr, int k, int n)
+{
+    deque<int> dq;
+
+    vector<int> answer;
+
+ 
+
+    // process first window of k size:
+
+    for(int i=0;i<k;i++) if(arr[i] < 0) dq.push_back(i);
+
+ 
+
+    // store answer of first k size window:
+
+    if(dq.size() > 0) answer.push_back(arr[dq.front()]);
+
+    else answer.push_back(0);
+
+ 
+
+    // proecss for remaining windows:
+
+    for(int i=k;i<n;i++){
+
+        // removal:
+
+        if(!dq.empty() && i - dq.front() >= k) dq.pop_front();
+
+        
+
+        // addition:
+
+        if(arr[i] < 0) dq.push_back(i);
+
+ 
+
+        // store answer:
+
+        if(dq.size() > 0) answer.push_back(arr[dq.front()]);
+
+        else answer.push_back(0);
+
+    }
+
+ 
+
+    // return answer:
+
+    return answer;
+
+}
+
