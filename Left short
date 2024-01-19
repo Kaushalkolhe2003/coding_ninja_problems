@@ -1,0 +1,73 @@
+#include <bits/stdc++.h> 
+/****************************************************************
+
+    Following is the class structure of the Node class:
+
+    class Node
+    {
+    public:
+        int data;
+        Node *next;
+
+        Node(int data)
+        {
+            this->data = data;
+            this->next = NULL;
+        }
+    };
+
+*****************************************************************/
+void addNode(Node* &start,Node* &end,Node* node){
+
+    if(start==nullptr){
+
+        start=node;
+
+        end=node;
+
+    }
+
+    else{
+
+        end->next = node;\
+
+        end=end->next;
+
+    }
+
+}
+Node *getListAfterDeleteOperation(Node *head){
+      if(head==nullptr){
+
+        return nullptr;
+
+    }
+
+    Node* curr=head->next;
+
+    Node* prev=head;
+
+    Node* start=nullptr;
+
+    Node* end=nullptr;
+
+    addNode(start, end, head);
+
+   while(curr!=nullptr){
+
+       if (curr->data >= prev->data) {
+
+           addNode(start,end,curr);
+
+       }
+
+       prev=curr;
+
+       curr=curr->next;
+
+   }
+
+   end->next=nullptr;
+
+   return start;
+}
