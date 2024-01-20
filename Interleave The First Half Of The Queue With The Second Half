@@ -1,0 +1,20 @@
+#include <bits/stdc++.h> 
+void interLeaveQueue(queue < int > & q) {
+    queue <int> new_q;
+    int n=q.size();
+    int t=n/2;
+    while(t){
+        int value=q.front();
+        q.pop();
+        new_q.push(value);
+        t--;
+    }
+    while(!new_q.empty()){
+        int value=new_q.front();
+        new_q.pop();
+        q.push(value);
+        int alternate=q.front();
+        q.pop();
+        q.push(alternate);
+    }
+}
