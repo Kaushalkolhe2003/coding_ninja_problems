@@ -1,0 +1,26 @@
+LinkedListNode<int>* addOneToList(LinkedListNode<int> *head){
+    LinkedListNode<int>* curr = reverseLL(head);
+    LinkedListNode<int>* ans = new LinkedListNode<int>(-1);
+    LinkedListNode<int>* res = ans;
+    int carry = 1;
+    curr = curr->next;
+
+    while(curr || carry){
+        int val = 0;
+
+        if(curr){
+            val += curr->data;
+            curr = curr->next;
+        }
+        val += carry;
+
+        int dig = val%10;
+        carry = val/10;
+        
+        LinkedListNode<int>* temp = new LinkedListNode<int>(dig);
+        res->next = temp;
+        res = temp;
+    }
+
+    return reverseLL(ans);
+}
