@@ -1,0 +1,40 @@
+Node* deleteNode(Node* head, int key) {
+    // Check if the list is empty
+    if (head == NULL) {
+        return NULL;
+    }
+
+    // Find the node to be deleted and its predecessor
+    Node *prev = head;
+    Node *curr = head->next;
+
+    // Special case for a single-node circular list
+    if (head->next == head && head->data == key) {
+        delete head;
+        return NULL;
+    }
+
+    // Traverse the list to find the node with the given key
+    while (curr != head && curr->data != key) {
+        prev = curr;
+        curr = curr->next;
+    }
+
+    // If the node with the key is not found, do nothing
+    if (curr == head && curr->data != key) {
+        return head;
+    }
+
+    // Update the pointers to remove the node
+    prev->next = curr->next;
+
+    // Update the head if the first node is deleted
+    if (head == curr) {
+        head = curr->next;
+    }
+
+    // Delete the node
+    delete curr;
+
+    return head;
+}
