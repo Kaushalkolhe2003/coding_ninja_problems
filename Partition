@@ -1,0 +1,44 @@
+#include <bits/stdc++.h> 
+/****************************************************************
+
+    Following is the class structure of the Node class:
+
+       class Node
+        {
+        public:
+            int data;
+            Node *next;
+            Node(int data)
+            {
+               this->data = data;
+              this->next = NULL;
+            }
+        };
+
+*****************************************************************/
+
+Node*findPartiton(Node*head, int x)
+{
+	 if (!head)
+    return NULL;
+
+  Node *small = new Node(0), *large = new Node(0);
+  Node *p = small, *q = large, *r = head;
+
+  while (r) {
+    if (r->data < x) {
+      p->next = r;
+      p = p->next;
+    } else {
+      q->next = r;
+      q = q->next;
+    }
+
+    r = r->next;
+  }
+
+  p->next = large->next;
+  q->next = NULL;
+
+  return small->next;
+}
