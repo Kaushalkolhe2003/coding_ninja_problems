@@ -1,0 +1,87 @@
+#include <bits/stdc++.h>
+
+ 
+
+void setZeros(vector<vector<int>> &matrix){
+
+ 
+
+    int rows = matrix.size();
+
+    int cols = matrix[0].size();
+
+ 
+
+    int** matrixCopy = new int* [rows];
+
+ 
+
+    for (int i = 0; i < rows; i++){
+
+        matrixCopy[i] = new int[cols];
+
+    }
+
+ 
+
+    for (int i = 0; i < rows; i++){
+
+        for (int j = 0; j < cols; j++){
+
+            matrixCopy[i][j] = matrix[i][j];
+
+        }
+
+    }
+
+ 
+
+    for (int i = 0; i < rows; i++){
+
+        for (int j = 0; j < cols; j++){
+
+ 
+
+            if (matrix[i][j] == 0){
+
+                for (int k = 0; k < cols; k++){
+
+                    matrixCopy[i][k] = 0;
+
+                }
+
+ 
+
+                for (int h = 0; h < rows; h++){
+
+                    matrixCopy[h][j] = 0;
+
+                }
+
+            }
+
+ 
+
+        }
+
+    }
+
+ 
+
+    for (int i = 0; i < rows; i++){
+
+        for (int j = 0; j < cols; j++){
+
+            matrix[i][j] = matrixCopy[i][j];
+
+        }
+
+    }
+
+ 
+
+    return;
+
+ 
+
+}
