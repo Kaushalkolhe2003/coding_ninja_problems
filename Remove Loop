@@ -1,0 +1,17 @@
+List* noLoop(List *head , int k) {
+   List* temp=head;
+
+   while(temp!=NULL && k!=1){
+
+      temp=temp->next;
+
+      k--;
+
+   }
+
+   temp->next=NULL;
+
+   temp=head;
+
+   return temp;
+}
