@@ -1,0 +1,29 @@
+#include <bits/stdc++.h> 
+char toupper(char c){
+	if(c>='a' && c<='z'){
+		return c-'a'+'A';
+
+	}
+	return c;
+}
+string convertString(string str) 
+{
+	string capitalize;
+
+	bool isfirst=true;
+
+	for (char c : str){
+		if(isfirst){
+			capitalize+=toupper(c);
+			isfirst=false;
+		}
+		else{
+			capitalize +=c;
+
+		}
+		if(c==' '){
+			isfirst=true;
+		}
+	}
+	return capitalize;
+}
