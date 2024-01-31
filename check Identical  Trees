@@ -1,0 +1,21 @@
+bool identicalTrees(BinaryTreeNode<int>* root1, BinaryTreeNode<int>* root2) {
+    if(root1==NULL && root2==NULL){
+        return true;
+    }
+    if(root1!=NULL && root2==NULL){
+        return false;
+    
+    }
+    if(root1==NULL && root2!=NULL){
+        return false;
+
+    }
+    bool left1=identicalTrees(root1->left,root2->left);
+    bool right1=identicalTrees(root1->right,root2->right);
+    if(left1 && right1){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
