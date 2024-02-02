@@ -1,0 +1,33 @@
+#include <bits/stdc++.h> 
+int slotScore(string &original, string &guess)
+{
+	int perfectHits = 0;
+    for (size_t i = 0; i < original.size(); ++i) {
+        if (original[i] == guess[i]) {
+            perfectHits++;
+        }
+    }
+
+    // Count pseudo-hits
+    int pseudoHits = 0;
+    std::unordered_map<char, int> originalCount, guessCount;
+    for (char color : original) {
+        originalCount[color]++;
+    }
+    for (char color : guess) {
+        guessCount[color]++;
+    }
+
+    for (const auto& entry : originalCount) {
+        char color = entry.first;
+        pseudoHits += std::min(originalCount[color], guessCount[color]);
+    }
+
+    pseudoHits -= perfectHits;
+
+    // Calculate total points
+    int totalPoints = 2 * perfectHits + pseudoHits;
+
+    return totalPoints;
+
+}
