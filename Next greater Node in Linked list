@@ -1,0 +1,51 @@
+#include <bits/stdc++.h> 
+/****************************************************************
+
+    Following is the class structure of the Node class:
+
+        class Node
+        {
+        public:
+	        int data;
+	        Node *next;
+	        Node(int data)
+	        {
+		        this->data = data;
+		        this->next = NULL;
+	        }
+        };
+
+*****************************************************************/
+
+void solve(Node* head,vector<int>& ans,stack<int>& s)
+
+{
+
+    if(head == NULL)
+
+    {
+
+        return;
+    }
+    solve(head->next,ans,s);
+    while(s.top() != 0 and head->data >= s.top())
+    {
+        s.pop();
+	}
+    ans.push_back(s.top());
+    s.push(head->data);
+}
+
+vector<int> findNextGreaterNodeList(Node* head)
+
+{
+
+    vector<int> ans;
+    stack<int> s;
+    s.push(0);
+    solve(head,ans,s);
+    reverse(ans.begin(),ans.end());
+    return ans;
+
+}
+
