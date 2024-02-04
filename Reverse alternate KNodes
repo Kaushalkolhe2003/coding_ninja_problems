@@ -1,0 +1,43 @@
+#include <bits/stdc++.h> 
+/*
+    Following is the class structure of the Node class:
+
+    class Node
+	{
+	public:
+	    int data;
+	    Node *next;
+	    Node(int data)
+	    {
+	        this->data = data;
+	        this->next = NULL;
+	    }
+	};
+*/
+
+Node* reverseAlternateKNodes(Node* head, int k)
+{
+	if (!head)
+    return head;
+  int count = 0;
+  Node *p = head, *pre = NULL;
+  while (p and count < k) {
+    Node *nxt = p->next;
+    p->next = pre;
+    pre = p, p = nxt;
+    count++;
+  }
+  if (p) {
+    head->next = p;
+    count = 0;
+    while (p and count < k - 1) {
+      p = p->next;
+      count++;
+    }
+
+    if (p)
+      p->next = reverseAlternateKNodes(p->next, k);
+  }
+
+  return pre;
+}
