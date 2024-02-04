@@ -1,0 +1,17 @@
+#include <bits/stdc++.h> 
+
+long long int countOf3(int x) {
+     // Write your code here.
+     int count=0;
+     for(int i=0;i<=x;i++){
+          string s=to_string(i);
+          for(int j=0;j<s.length();j++){
+               if(s[j]=='3'){
+                    count++;
+               }
+          }
+
+
+     }
+     return count; 
+}
