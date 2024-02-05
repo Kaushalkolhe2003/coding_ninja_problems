@@ -1,0 +1,24 @@
+void inOrderTrav(TreeNode *curr, vector<int> &inOrder) {
+
+  if (curr == NULL)
+
+    return;
+
+ 
+
+  inOrderTrav(curr->left, inOrder);
+
+  inOrder.push_back(curr->data);
+
+  inOrderTrav(curr->right, inOrder);
+
+}
+vector<int> getInOrderTraversal(TreeNode *root)
+{
+    vector<int> ans;
+    if(root==NULL){
+        return ans;
+    }
+    inOrderTrav(root,ans);
+    return ans;
+}
