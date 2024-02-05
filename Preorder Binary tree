@@ -1,0 +1,35 @@
+#include<vector>
+/************************************************************
+
+    Following is the TreeNode class structure
+
+    template <typename T>
+    class TreeNode {
+       public:
+        T data;
+        TreeNode<T> *left;
+        TreeNode<T> *right;
+
+        TreeNode(T data) {
+            this->data = data;
+            left = NULL;
+            right = NULL;
+        }
+    };
+
+************************************************************/
+
+vector<int> preOrder(TreeNode<int> * root){
+    vector<int> ans;
+    if(root==NULL){
+        return ans;
+    }
+    ans.push_back(root->data);
+
+    vector<int> left_ans=preOrder(root->left);
+    ans.insert(ans.end(),left_ans.begin(),left_ans.end());
+    vector<int> right_ans=preOrder(root->right);
+    ans.insert(ans.end(),right_ans.begin(),right_ans.end());
+
+    return ans;
+}
