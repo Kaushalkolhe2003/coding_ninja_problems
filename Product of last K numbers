@@ -1,0 +1,29 @@
+#include <bits/stdc++.h> 
+vector<int> solve( int q, vector<pair<int, int>> queries ) 
+{
+	vector<int> result;
+	vector<int> array1;
+	int product=1;
+
+	for(int i=0;i<q;i++){
+		int query_type=queries[i].first;
+		int value=queries[i].second;
+
+		if(query_type==0){
+			array1.push_back(value);
+			product*=value;
+		}
+		else if(query_type==1){
+			int k=value;
+			int len=array1.size();
+			int product_k_term=1;
+			for(int j=len-k;j<len;++j){
+				product_k_term*=array1[j];
+			}
+			result.push_back(product_k_term);
+		}
+	}
+	return result;
+
+}
+
