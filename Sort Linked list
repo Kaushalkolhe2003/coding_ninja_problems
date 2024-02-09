@@ -1,0 +1,44 @@
+#include <bits/stdc++.h> 
+/****************************************************************
+
+    Following is the class structure of the Node class:
+
+        class Node
+        {
+        public:
+	        int data;
+	        Node *next;
+	        Node(int data)
+	        {
+		        this->data = data;
+		        this->next = NULL;
+	        }
+        };
+
+*****************************************************************/
+void insert_element(Node *&head,Node *&tail,int k){
+	Node*temp=new Node (k);
+	if(head==NULL){
+		head=temp;
+		tail=temp;
+	}
+	tail->next=temp;
+	tail=temp;
+}
+Node *sortLL(Node *head)
+{
+    vector<int> v;
+	Node * temp=head;
+	while(temp){
+		v.push_back(temp->data);
+		temp=temp->next;
+	}
+	sort(v.begin(),v.end());
+	Node *newhead=NULL;
+	Node *newtail=NULL;
+	for(int i=0;i<v.size();i++){
+		insert_element(newhead,newtail,v[i]);
+	}
+	return newhead;
+
+}
