@@ -1,0 +1,54 @@
+#include <bits/stdc++.h> 
+/****************************************************
+
+	Binary tree node class for reference:
+	class BinaryTreeNode {
+		public :
+		T data;
+		BinaryTreeNode<T> *left;
+		BinaryTreeNode<T> *right;
+
+		BinaryTreeNode(T data) {
+			this -> data = data;
+			left = NULL;
+			right = NULL;
+		}
+	};
+
+****************************************************/
+
+int mod=1e9+7;
+
+void solve(BinaryTreeNode<int>* root,long long & ans,long long x)
+
+{
+
+    if(root==NULL) return ;
+
+    x=(x*10+root->data)%mod;
+
+    solve(root->left,ans,x);
+
+    solve(root->right,ans,x);
+
+    if(root->left==NULL && root->right==NULL)
+
+    {
+
+        ans=(ans+x)%mod;
+
+    }
+
+}
+
+int rootToLeafSum( BinaryTreeNode<int>* root) 
+
+{
+
+    long long ans=0;
+
+    solve(root,ans,0);
+
+    return (ans)%mod;
+
+}
