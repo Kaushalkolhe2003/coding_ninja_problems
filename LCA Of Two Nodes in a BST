@@ -1,0 +1,38 @@
+/************************************************************
+    Following is the Binary Search Tree node structure
+
+    class TreeNode
+    {
+    public:
+        int data;
+        TreeNode *left, *right;
+        TreeNode() : data(0), left(NULL), right(NULL) {}
+        TreeNode(int x) : data(x), left(NULL), right(NULL) {}
+        TreeNode(int x, TreeNode *left, TreeNode *right) : data(x), left(left), right(right) {}
+    };
+
+************************************************************/
+
+TreeNode *LCAinaBST(TreeNode *root, TreeNode *P, TreeNode *Q)
+{
+    if(root==NULL){
+        return NULL;
+    }
+    if(root==P || root==Q){
+        return root;
+    }
+    TreeNode *leftans=LCAinaBST(root->left,P,Q);
+    TreeNode *rightans=LCAinaBST(root->right,P,Q);
+    if(leftans!=NULL && rightans!=NULL){
+        return root;
+    }
+    else if(leftans!=NULL && rightans==NULL){
+        return leftans;
+    }
+    else if(leftans==NULL && rightans!=NULL){
+        return rightans;
+    }
+    else{
+        return NULL;
+    }
+}
