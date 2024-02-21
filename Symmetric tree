@@ -1,0 +1,46 @@
+/*****************************************************
+
+    Following is the Binary Tree node structure:
+    
+    class BinaryTreeNode {
+        public : 
+        T data;
+        BinaryTreeNode<T> *left;
+        BinaryTreeNode<T> *right;
+
+        BinaryTreeNode(T data) {
+            this -> data = data;
+            left = NULL;
+            right = NULL;
+        }
+        
+        ~BinaryTreeNode() {
+            if(left) 
+                delete left;
+            if(right) 
+                delete right;
+        }
+    };
+
+******************************************************/
+
+bool check(BinaryTreeNode<int> *p, BinaryTreeNode<int> *q) {
+    // If both nodes are NULL, they are mirror images
+    if (p == NULL && q == NULL)
+        return true;
+    
+    // If one of the nodes is NULL or data is not equal, they are not mirror images
+    if (p == NULL || q == NULL || p->data != q->data)
+        return false;
+    
+    // Check recursively for the subtrees' children
+    return check(p->left, q->right) && check(p->right, q->left);
+}
+
+bool isSymmetric(BinaryTreeNode<int>* root) {
+    if (root == NULL)
+        return true;
+    
+    // Pass the left and right subtrees to the helper function
+    return check(root->left, root->right);
+}
