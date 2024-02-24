@@ -1,0 +1,55 @@
+#include <bits/stdc++.h> 
+
+void sortingele(stack<int> &st , int ele)
+
+{
+
+    if(st.empty()||st.top()<ele)
+
+    {
+
+        st.push(ele);
+
+        return;
+
+    }
+
+    int top=st.top();
+
+    st.pop();
+
+    sortingele(st,ele);
+
+    st.push(top);
+
+ 
+
+}
+
+void sort00(stack<int> &s)
+
+{
+
+    if(s.empty())
+
+    return;
+
+    int ele=s.top();
+
+    s.pop();
+
+    sort00(s);
+
+    sortingele(s,ele);
+
+}
+
+stack<int> sortStack(stack<int> &s)
+
+{
+
+     sort00(s);
+
+     return s;
+
+}
