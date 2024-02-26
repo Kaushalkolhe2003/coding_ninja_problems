@@ -1,0 +1,21 @@
+void deleteNode(Node * ( & head), int pos) {
+    // Write your code here.
+    if(pos==0)
+    {
+        head=head->next;
+    }
+
+    int i=0;
+
+    Node* temp=head;
+    while(temp)
+    {
+        if(i==pos-1)
+        {
+            temp->next=temp->next->next;
+            break;
+        }
+        i++;
+        temp=temp->next;
+    }
+}
