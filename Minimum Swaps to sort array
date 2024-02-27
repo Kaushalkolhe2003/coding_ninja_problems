@@ -1,0 +1,36 @@
+int minSwaps(vector<int> &arr)
+
+{
+
+     int c = 0;
+
+    vector<int> dup(arr); 
+
+    
+
+    sort(dup.begin(), dup.end());
+
+    
+
+    for (int i = 0; i < dup.size(); i++) { 
+
+        int f = dup[i];
+
+        if (f != arr[i]) {
+
+            int k = find(arr.begin(), arr.end(), f) - arr.begin();
+
+            swap(arr[i], arr[k]);
+
+            c++;
+
+        }
+
+    }
+
+    
+
+    return c;
+
+}
+
