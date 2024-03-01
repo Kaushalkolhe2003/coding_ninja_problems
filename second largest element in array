@@ -1,0 +1,31 @@
+#include <bits/stdc++.h> 
+int findSecondLargest(int n, vector<int> &arr)
+{
+    int largest=arr[0];
+
+    int seclargest=INT_MIN;
+
+    for(int i=1;i<arr.size();i++){
+
+        if(arr[i]>largest){
+
+            seclargest=largest;
+
+            largest=arr[i];
+
+        }
+
+        else if(arr[i]>seclargest && arr[i]!=largest){
+
+            seclargest=arr[i];
+
+        }
+
+    }
+
+    if(seclargest==INT_MIN)
+
+    return -1;
+
+    return seclargest;
+}
