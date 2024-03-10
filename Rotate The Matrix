@@ -1,0 +1,33 @@
+#include<vector>
+#include<bits/stdc++.h>
+
+void rotateMatrix(vector<vector<int>> &mat){
+	int n=mat.size();
+	for(int i=0;i<n-1;i++){
+		for(int j=i+1;j<n;j++){
+			swap(mat[i][j],mat[j][i]);
+		}
+	}
+	for(int j=0;j<n;j++){
+		reverse(mat[j].begin(),mat[j].end());
+	}
+	
+}
+/*
+void rotateMatrix(vector<vector<int>> &mat){
+	// Write your code here.
+	
+	int  m = mat.size(); //no of rows...	
+    int n = mat[0].size();// no of columns...
+	vector<vector<int>> ans(n, vector<int>(m));
+
+	for(int i=0;i<m;i++){
+		for(int j=0;j<n;j++){
+			ans[j][(m-1)-i]=mat[i][j];
+		}
+	}
+	mat=ans;
+	
+	
+}
+*/
