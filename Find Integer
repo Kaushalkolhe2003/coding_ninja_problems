@@ -1,0 +1,10 @@
+#include <bits/stdc++.h> 
+int findInteger(int n, int k) 
+{
+    if(k<=(n+1)/2){
+        return 2*k-1;
+    }
+    else{
+        return 2*(k-(n+1)/2);
+    }
+}
