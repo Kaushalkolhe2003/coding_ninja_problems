@@ -1,0 +1,59 @@
+/*************************************************************
+
+    Following is the Binary Tree node structure
+    class TreeNode
+    {
+    public:
+        int data;
+        TreeNode *left, *right;
+        TreeNode() : data(0), left(NULL), right(NULL) {}
+        TreeNode(int x) : data(x), left(NULL), right(NULL) {}
+        TreeNode(int x, TreeNode *left, TreeNode *right) : data(x), left(left), right(right) {}
+    };
+
+*************************************************************/
+void find_pred_succe(TreeNode * &root,TreeNode *&pre,TreeNode *&succ,int key){
+    if(root==NULL){
+        return ;
+    }
+     // the maximum value in left subtree is predecessor
+    if(root->data == key){
+        
+        if(root->left !=NULL){
+            TreeNode *temp=root->left;
+            
+            while(temp->right){
+                temp=temp->right;
+            }
+            pre=temp;
+        }
+        
+        // the minimum value in right subtree is successor.....
+        if(root->right !=NULL){
+            TreeNode * temp= root->right;
+            while(temp->left){
+                temp=temp->left;
+            }
+            succ=temp;
+        }
+        return ;
+    }
+    if(root->data > key){
+        succ=root;
+        find_pred_succe(root->left,pre,succ,key);
+    }
+    else{
+        pre=root;
+        find_pred_succe(root->right,pre,succ,key);
+    }
+}
+pair<int, int> predecessorSuccessor(TreeNode *root, int key)
+{
+    pair<int,int> ans;
+    TreeNode * pre=NULL;
+    TreeNode*succ=NULL;
+    find_pred_succe(root,pre,succ,key);
+    ans.first = (pre != NULL) ? pre->data : -1; // Check if pre is NULL
+    ans.second = (succ != NULL) ? succ->data : -1; // Check if succ is NULL
+    return ans;
+}
