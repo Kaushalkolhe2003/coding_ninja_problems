@@ -1,0 +1,33 @@
+#include <bits/stdc++.h> 
+#include<queue>
+
+int minicost(vector<int> &lengths){
+	priority_queue <int, vector<int>, greater<int> > pq;
+	for(int i=0;i<lengths.size();i++){
+		pq.push(lengths[i]);
+	}
+	int totalcost=0;
+
+
+	while(pq.size() >1){
+		//grap 2 smallest element...
+
+		int a=pq.top();
+		pq.pop();
+		int b=pq.top();
+		pq.pop();
+
+
+		int c=a+b;
+		totalcost+=c;
+
+		pq.push(c);
+
+	}
+	return totalcost;
+}
+int connectRopes(vector<int> &lengths, int n) {
+	int mini=minicost(lengths);
+	return mini;
+	
+}
