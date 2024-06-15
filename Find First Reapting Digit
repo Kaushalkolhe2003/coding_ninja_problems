@@ -1,0 +1,17 @@
+#include <bits/stdc++.h> 
+int findFirstRepeatingDigit(string digitPattern) {
+   unordered_map<char,bool> mp;
+   
+   for(auto i : digitPattern){
+
+       if(mp[i]==true){
+           return i-'0';
+
+       }
+       else{
+           mp[i]=true;
+       }
+   }
+   return -1;
+   
+     }
