@@ -1,0 +1,27 @@
+#include <cmath>  // For pow function
+
+int cnt(Node * &head){
+    int count = 0;
+    Node * temp = head;
+    while(temp != NULL){
+        count++;
+        temp = temp->next;
+    }
+    return count;
+}
+
+int binaryToInteger(int n, Node *head) {
+    int x = cnt(head);          // Get the count of nodes
+    int sum = 0;
+    int power = pow(2, x - 1);  // Initialize the highest power of 2
+
+    Node * temp = head;
+
+    while(temp != NULL){
+        sum += temp->data * power;  // Multiply current node's data with current power of 2
+        power /= 2;                 // Divide power by 2 for next iteration
+        temp = temp->next;          // Move to the next node
+    }
+
+    return sum;
+}
