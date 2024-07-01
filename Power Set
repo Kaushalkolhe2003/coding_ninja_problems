@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+void generatepow(vector<int>&v,vector<vector<int> > &result,vector<int> subset,int index){
+    if(index>=v.size()){
+        result.push_back(subset);
+        return ;
+    }
+
+    generatepow(v,result,subset,index+1);
+
+    subset.push_back(v[index]);
+
+    generatepow(v,result,subset,index+1);
+
+  
+
+
+
+} 
+vector<vector<int>> pwset(vector<int>v)
+{
+    vector<vector<int> > result;
+    vector<int> subset;
+    generatepow(v,result,subset,0);
+    
+    return result;
+}
