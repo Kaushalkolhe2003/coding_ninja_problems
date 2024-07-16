@@ -1,0 +1,59 @@
+#include <bits/stdc++.h> 
+
+void solve(vector<vector<int>>&adj,vector<bool>&visited,stack<int>&s,int pointer)
+
+{
+
+    visited[pointer]=true;
+
+    for(auto i:adj[pointer])
+    {
+        if(!visited[i])
+        {
+            solve(adj,visited,s,i);
+        }
+    }
+    s.push(pointer);
+}
+
+vector<int> topologicalSort(vector<vector<int>> &edges, int v, int e)  {
+
+    vector<vector<int>>adj(v+1);
+    for(int i=0; i<e; ++i)
+    {
+       int x = edges[i][0];
+        int y = edges[i][1];
+        adj[x].push_back(y);
+    }
+    vector<bool>visited(v,false);
+    stack<int>s;
+
+    for(int i=0; i<v; ++i)
+
+    {
+
+        if(!visited[i])
+
+        {
+
+            solve(adj,visited,s,i);
+
+        }
+
+    }
+
+    vector<int>ans;
+
+    while(!s.empty())
+
+    {
+
+        ans.push_back(s.top());
+
+        s.pop();
+
+    }
+
+    return ans;
+
+}
