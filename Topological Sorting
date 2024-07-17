@@ -1,0 +1,58 @@
+#include <unordered_map>
+#include <queue>
+#include <vector>
+#include <list>
+
+using namespace std;
+
+vector<int> topologicalSort(vector<vector<int>> &graph, int edges, int nodes) {
+    // Create a data structure to store an adjacency list
+    unordered_map<int, list<int>> adj;
+
+    for (int i = 0; i < edges; i++) {
+        int u = graph[i][0];
+        int v = graph[i][1];
+
+        adj[u].push_back(v);
+    }
+
+    // Initialize indegree vector
+    vector<int> indegree(nodes, 0);
+
+    for (auto &i: adj) {
+        for (auto &j: i.second) {
+            indegree[j]++;
+        }
+    }
+
+    queue<int> q;
+    for (int i = 0; i < nodes; i++) {
+        if (indegree[i] == 0) {
+            q.push(i);
+        }
+    }
+
+    // BFS logic
+    vector<int> ans;
+    while (!q.empty()) {
+        int front = q.front();
+        q.pop();
+
+        ans.push_back(front);
+
+        for (auto &neighbour : adj[front]) {
+            indegree[neighbour]--;
+            if (indegree[neighbour] == 0) {
+                q.push(neighbour);
+            }
+        }
+    }
+
+    // If the size of ans is less than the number of nodes, it means there was a cycle.
+    if (ans.size() != nodes) {
+        return {}; // Return an empty vector to indicate that a topological sort is not possible
+    }
+
+    return ans;
+}
+
