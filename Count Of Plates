@@ -1,0 +1,14 @@
+#include <bits/stdc++.h> 
+#include<cmath>
+
+bool countPlatesOnTable(int n, int R, int r){
+    if(n<=1){
+        return r<=R;
+    }
+    double angle = M_PI/n;
+    double req_dist=2*r;
+    double actual_dis=2*(R-r)*sin(angle);
+
+    return actual_dis>=req_dist;
+
+}
