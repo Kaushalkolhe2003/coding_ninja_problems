@@ -1,0 +1,15 @@
+#include <bits/stdc++.h> 
+int maximumWeightRow(int n, int m, vector<vector<int>> &mat) {
+    int maxweight=0;
+    for(int i=0;i<n;i++){
+        int rowsum=0;
+        for(int j=0;j<m;j++){
+            rowsum+=mat[i][j];
+        }
+
+        if(rowsum>maxweight){
+            maxweight=rowsum;
+        }
+    }
+    return maxweight;
+}
