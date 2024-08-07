@@ -1,0 +1,43 @@
+#include <bits/stdc++.h> 
+
+long long int sumOrProduct(long long int n, long long int q)
+
+{
+
+    long long sum=0;
+
+    long long pro=1;
+
+ 
+
+    if(q==1)
+
+    {
+
+        for(int i=q;i<=n;i++)
+
+        {
+
+            sum=sum+i;
+
+        }
+
+        return sum;
+
+    }
+
+    else
+
+    {  for(int i=q;i<=n;i++)
+
+    {
+
+        pro=(pro*i)%1000000007;
+
+    }
+
+    return pro;
+
+    }
+
+}
