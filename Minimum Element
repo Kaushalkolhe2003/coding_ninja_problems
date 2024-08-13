@@ -1,0 +1,73 @@
+#include <bits/stdc++.h> 
+int solveRecursion(vector<int> & num,int N,int x){
+    //base case where target is 0 we have 0  as to reach target 0 is 0
+    if(x==0){
+
+        return 0;
+    }
+    if(x<0){
+        //impossible to reach the target..
+        return INT_MAX;
+    }
+    int min_count=INT_MAX;
+    for(int i=0;i<N;++i){
+        int res=solveRecursion(num,N,x-num[i]); //recursion call
+
+        if(res!= INT_MAX){
+            //for valid result
+            min_count=min(min_count,res+1);
+        }
+
+    }
+
+    return min_count;
+}
+int solveRecursion2(vector<int> & num,int N,int x,vector<int> &dp){
+    //base case where target is 0 we have 0  as to reach target 0 is 0
+    if(x==0){
+
+        return 0;
+    }
+    if(x<0){
+        //impossible to reach the target..
+        return INT_MAX;
+    }
+    if(dp[x]!=-1){
+        return dp[x];
+    }
+    int min_count=INT_MAX;
+    for(int i=0;i<N;++i){
+        int res=solveRecursion2(num,N,x-num[i],dp); //recursion call
+
+        if(res!= INT_MAX){
+            //for valid result
+            min_count=min(min_count,res+1);
+        }
+        dp[x]=min_count;
+
+    }
+
+    return min_count;
+}
+int minimumElements(vector<int> &num, int x)
+{
+    // int N=num.size();
+    
+    // int ans= solveRecursion(num,N,x);
+    // if(ans==INT_MAX){
+    //     return -1;
+    // }
+    // return ans;
+
+    int N=num.size();
+    vector<int> dp(x+1,-1);
+    int ans=solveRecursion2(num,N,x,dp);
+    if(ans==INT_MAX){
+        return -1;
+    }
+    
+    return ans;
+
+
+
+}
