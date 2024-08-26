@@ -1,0 +1,32 @@
+#include <bits/stdc++.h> 
+void generatecombination(const string &d,int index ,string curr,vector<string> & ans){
+    if(index==d.length()){
+        ans.push_back(curr);
+        return;
+    }
+
+    if(index < d.length()){
+        int num=d[index]-'0';
+
+        if(num>=1 && num<=9){
+            char letter='a'+num-1;
+            generatecombination(d,index+1,curr+letter,ans);
+        }
+    }
+
+    if(index+1<d.length()){
+        int num=(d[index]-'0')*10 +(d[index+1]-'0');
+        if(num>=10 && num<=26){
+            char letter='a'+num-1;
+            generatecombination(d,index+2,curr+letter,ans);
+        }
+    }
+}
+vector<string> getAllStrings(string& s) {
+   vector<string> ans;
+   generatecombination(s,0,"",ans);
+
+   sort(ans.begin(),ans.end());
+
+   return ans;
+}
