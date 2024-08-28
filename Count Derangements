@@ -1,0 +1,92 @@
+# define MOD 1000000007
+#include<vector>
+long long int solve(int n){
+     if (n == 1) {
+        return 0;
+    }
+    if (n == 2) {
+        return 1;
+    }
+
+    // Calculate derangement for n
+    long long int d1 = solve(n - 1); // ![n-1]
+    long long int d2 = solve(n - 2); // ![n-2]
+    
+    // Use the formula for derangements
+    long long int result = ((n - 1) * (d1 + d2)) % MOD;
+
+    return result;
+}
+long long int solveDP(vector<long long > &dp,int n){
+    if(n==1){
+        return 0;
+    }
+    if(n==2){
+        return 1;
+    }
+    if(dp[n]!=-1){
+        return dp[n];
+    }
+    // Calculate derangement for n
+    long long int d1 = solveDP(dp,n - 1); // ![n-1]
+    long long int d2 = solveDP(dp,n - 2); // ![n-2]
+
+    long long int result=((n-1)*(d1+d2))%MOD;
+    dp[n]=result;
+
+    return dp[n];
+
+
+
+}
+long long int solveTB(int n){
+
+    if(n==1){
+        return 0;
+
+    }
+    if(n==2){
+        return 1;
+    }
+    vector<long long int > dp(n+1,0);
+
+    dp[1]=0;
+    dp[2]=1;
+    for(int i=3;i<=n;i++ ){
+        dp[i]=((i-1)*(dp[i-1]+dp[i-2]))%MOD;
+    }
+
+    return dp[n];
+
+}
+long long int solveOP(int n){
+    long long int  prev1=0;
+   long long int  prev2=1;
+    for(int i=3;i<=n;i++){
+        long long int curr=((i-1)*(prev1+prev2))%MOD;
+        prev1=prev2;
+        prev2=curr;
+    }
+
+    return prev2;
+
+}
+
+long long int countDerangements(int n) {
+//    vector<long long > dp (n+1,-1);
+
+//    long long int result=solveDP(dp,n);
+//    return result;
+
+
+//Tablulation
+
+// long long int a= solveTB(n);
+// return a;
+
+//Tabulation+Spaceoptimiaztion
+
+long long int a=solveOP( n);
+return a;
+
+}
