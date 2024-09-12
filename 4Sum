@@ -1,0 +1,17 @@
+int fourSum(int n, vector<int> &arr1, vector<int> &arr2, vector<int> &arr3, vector<int> &arr4)
+{
+    int ans=0;
+    unordered_map<int,int> mp;
+   for(auto a: arr1){
+       for(auto b:arr2){
+           mp[a+b]++;
+       }
+   }
+
+   for(auto c: arr3){
+       for(auto d: arr4){
+           ans+=mp[-(c+d)];
+       }
+   }
+   return ans;
+}
