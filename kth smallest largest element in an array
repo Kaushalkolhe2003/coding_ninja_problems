@@ -1,0 +1,47 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void kthSmallestLargest(int arr[], int n, int k) {
+
+    set<int> st;
+
+    for (int i = 0; i < n; i++) {
+        st.insert(arr[i]);
+    }
+
+    pair<int, int> pr = {-1, -1};
+    int i = 0;
+
+    for (auto it : st) {
+        if (i ==  (st.size() - k)) {
+            pr.first = it;
+        }
+
+        if (i == k-1) {
+            pr.second = it;
+        }
+
+        i++;
+    }
+
+    cout << pr.first << ' ' << pr.second << endl;
+
+    return;
+}
+
+int main() {
+    int t;
+    cin >> t;
+
+    while (t > 0) {
+        int n, k;
+        cin >> n >> k;
+        int arr[n];
+        for (int i = 0; i < n; i++) {
+            cin >> arr[i];
+        }
+        kthSmallestLargest(arr, n, k);
+        t--;
+    }
+    return 0;
+}
