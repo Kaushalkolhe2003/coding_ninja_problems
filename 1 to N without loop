@@ -3,6 +3,7 @@ void solve(int i,int n,vector<int>&ans){
         return;
     }
     ans.push_back(i);
+//recursion call
     solve(i+1,n,ans);
 }
 vector<int> printNos(int x) {
