@@ -7,7 +7,7 @@ int fourSum(int n, vector<int> &arr1, vector<int> &arr2, vector<int> &arr3, vect
            mp[a+b]++;
        }
    }
-
+//taking compliment
    for(auto c: arr3){
        for(auto d: arr4){
            ans+=mp[-(c+d)];
