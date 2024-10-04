@@ -2,6 +2,7 @@ void solve(int i,int n,vector<int>&ans){
     if(i>n){
         return;
     }
+//push in ans
     ans.push_back(i);
 //recursion call
     solve(i+1,n,ans);
