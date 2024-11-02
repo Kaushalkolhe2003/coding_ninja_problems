@@ -1,4 +1,4 @@
-#include <bits/stdc++.h> 
+#include <bits/stdc++.h>
 
 int solve(vector<int> &weight, vector<int> &value, int index, int cap){
 
